@@ -1,0 +1,12 @@
+{
+	"solargraph.logLevel": "debug",
+	"solargraph.diagnostics": true,
+	"solargraph.hover": true,
+	"rubyLsp.rubyVersionManager": "rbenv",
+  "rubyLsp.formatter": "auto",
+	"[ruby]": {
+			"editor.defaultFormatter": "Shopify.ruby-lsp",
+			"editor.formatOnSave": true,
+	},
+	"workbench.colorTheme": "Default Dark Modern",
+}
