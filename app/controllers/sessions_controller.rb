@@ -1,13 +1,12 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_token, only: [:create]
+
   def create
-    # トークン発行処理
-    # メールアドレスからユーザーを取得
     user = User.find_by(email: params['email'])
-    # ユーザー存在 かつ パスワード一致の場合、トークンを発行
-    ## user_idとjtiを含める
     if user && user&.authenticate(params[:password])
       jti = user.jti
-      payload = {jti: jti, user_id: user.id}
+      exp = (Time.now + 1.hour).to_i
+      payload = {jti: jti, exp: exp, user_id: user.id}
       token = JWT.encode(payload, Rails.application.credentials[:secret_key_base])
     end
     render json: {token: token}

@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   def index
-    # TODO: 認証処理で取得したユーザーからpostsを取得するようにする
-    posts = User.find(1).posts
+    posts = @current_user.posts
 
     render json: posts.as_json(only: [:id, :title])
   end
