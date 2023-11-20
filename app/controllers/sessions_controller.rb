@@ -13,8 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def delete
-    # トークン解読処理
-
-    render json: {message: 'test'}
+    @current_user.update(jti: SecureRandom.uuid)
+    render json: {message: 'logout successfully.'}
   end
 end
